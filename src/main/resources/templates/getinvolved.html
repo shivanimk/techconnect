@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link th:href="@{/styles/homestyle.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body id="grad1">
+    <div class="navbartop">
+        <div class="logo">Tech Connect
+        </div>
+        <a><form action="/welcome" method="post">
+            <button class="tab-btn" type="submit">Home</button>
+        </form></a>
+        <a><form action="/getinvolved" method="post">
+            <button class="tab-btn" type="submit">Get Involved</button>
+        </form></a>
+        <a><form action="/mainlogin" method="post">
+            <button class="tab-btn" type="submit">Log in</button>
+        </form></a>
+    </div>
+    <div class="container">
+        <h1 class="get-involved-heading container-h1">Get Involved</h1>
+        <div class="columns">
+            <div class="column">
+                <h2>Individuals (Seniors)</h2>
+                <p>Join us as an individual and make a difference in the senior community. Here's how you can get involved:</p>
+                <ul>
+                    <li>Sign up for an account.</li>
+                    <li>Browse upcoming event held by schools.</li>
+                    <li>Post event requests and attend events that interest you!</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h2>Senior Homes</h2>
+                <p>Senior homes can partner with us to connect seniors with technology and local schools. Here's how you can get involved:</p>
+                <ul>
+                    <li>Register your senior home become a partner (we ask that the home coordinator registers the home).</li>
+                    <li>Browse upcoming events held by schools.</li>
+                    <li>Post event requests and attend events that interest you!</li>
+                    <li>Provide event opportunities to seniors and assist in the sessions.</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h2>Schools</h2>
+                <p>Schools can collaborate with us to bridge the generation gap and offer technology education. Here's how you can get involved:</p>
+                <ul>
+                    <li>Register your high school become a partner (we ask that a teacher or administrator registers the home).</li>
+                    <li>Browse event requests.</li>
+                    <li>Post upcoming events you are organizing.</li>
+                    <li>Encourage and empower student volunteers to teach seniors about technology.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

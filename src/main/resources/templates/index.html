@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org ">
+<head>
+  <meta charset="UTF-8">
+  <title>Index</title>
+  <link th:href="@{/styles/homestyle.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body id="grad1">
+<div class="navbartop">
+  <div class="logo">Tech Connect
+  </div>
+  <a><form action="/welcome" method="post">
+    <button class="tab-btn" type="submit">Home</button>
+  </form></a>
+  <a><form action="/getinvolved" method="post">
+    <button class="tab-btn" type="submit">Get Involved</button>
+  </form></a>
+  <a><form action="/mainlogin" method="post">
+    <button class="tab-btn" type="submit">Log in</button>
+  </form></a>
+</div>
+<div class="container fll">
+  <div class="text-container">
+    <h1 class="larger-h1">Welcome to TechConnect!</h1>
+    <h1 class="messageh1">Our initiative is to help bridge the technology gap between generations. We connect senior citizens and senior homes with our partnered high schools and student volunteers and set up technology sessions to connect the senior community with schools to gain experience and provide them with the knowledge they need to navigate the digital landscape. Click the Get Involved tab to see how you can participate, contribute, or get involved!</h1>
+  </div>
+  <div class="image-container">
+    <img class="imgg" src="homeimg.png" width="600px">
+  </div>
+</div>
+
+
+
+</body>
+
+</html>

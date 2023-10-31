@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tech Connect</title>
+  <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="navbar">
+        <div class="logo">Tech Connect
+        </div>
+        <a><form action="/profile" method="post">
+            <button class="tab-btn" type="submit">Profile</button>
+        </form></a>
+            <a><form action="/allupcomingevents" method="get">
+            <button class="tab-btn" type="submit">Upcoming Events</button>
+        </form></a>
+        <a><form action="/requests" method="post">
+            <input type="hidden" name="email" th:value="${session.seniorinfo.email}" />
+            <button class="tab-btn" type="submit">My Requests</button>
+        </form></a>
+        <a><form action="/allschools" method="get">
+            <button class="tab-btn" type="submit">Participating Schools</button>
+        </form></a>
+        <a><form action="/logout" method="post">
+            <button class="tab-btn" type="submit">Log Out</button>
+        </form></a>
+</div>
+    <div class="event-container">
+        <h1>Events</h1>
+        <div class="container">
+            <div class="admin-event-table" >
+                <tr th:each="event : ${allupcomingevents}">
+                    <td>
+                        <div class="event-info">
+                            <div class="Topic">
+                                <span th:text="${event.title}"></span>
+                            </div>
+                            <div class="des">
+                                Organized by:
+                                <span class="description" th:text="${event.schoolName}"></span>
+                                <br>
+                                Event Description:
+                                <span class="description" th:text="${event.description}"></span>
+                                <br>
+                                Event Location:
+                                <span class="description" th:text="${event.location}"></span>
+                                <br>
+                                Event Date:
+                                <span class="description" th:text="${event.eventDateTime}"></span>
+                                <br>
+                                Event Duration:
+                                <span class="description" th:text="${event.duration}"></span>
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </div>
+
+            <div class="admin-event-table" >
+                <tr th:each="event : ${allEvents}">
+                    <td>
+                        <button type="button" class="collapsible event-name" th:text="${event.eventName}">Pep Rally</button>
+                        <div class="content">
+                            <label>Points Given: </label>
+                            <label class="points" th:text="${event.points}"></label><br/>
+                            <label>Event Date: </label>
+                            <label class="date" th:text="${event.eventDateTime}"></label><br/>
+                            <label>Event Time: </label>
+                            <label class="time" th:text="${event.eventDateTime}"></label><br/>
+                            <label>Event Description: </label>
+                            <label class="description"th:text="${event.eventDescription}"></label><br/>
+                            <label>Event Location: </label>
+                            <label class="place"th:text="${event.location}" ></label><br/>
+                            <a><form th:action="@{/checkin}" method="post">
+                                <input type="hidden" name="eventId" th:value="${event.id}" />
+                                <button class="attendance-btn" type="submit">Attendance</button>
+                            </form></a>
+                        </div>
+
+                    </td>
+                </tr>
+
+           </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        // For The collapsable table/button
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+    </script>
+
+
+</body>
+</html>

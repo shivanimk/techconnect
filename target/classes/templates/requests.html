@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tech Connect</title>
+  <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">Tech Connect
+        </div>
+        <a><form action="/profile" method="post">
+            <button class="tab-btn" type="submit">Profile</button>
+        </form></a>
+            <a><form action="/allupcomingevents" method="get">
+            <button class="tab-btn" type="submit">Upcoming Events</button>
+        </form></a>
+        </form></a>
+        <a><form action="/requests" method="post">
+            <input type="hidden" name="email" th:value="${session.seniorinfo.email}" />
+            <button class="tab-btn" type="submit">My Requests</button>
+        </form></a>
+        <a><form action="/allschools" method="get">
+            <button class="tab-btn" type="submit">Participating Schools</button>
+        </form></a>
+        <a><form action="/logout" method="post">
+            <button class="tab-btn" type="submit">Log Out</button>
+        </form></a>
+    </div>
+
+    <div class="event-container">
+        <h1>My Requests</h1>
+        <div class="container">
+            <div class="admin-event-table" >
+                <tr th:each="request : ${myrequests}">
+                    <td>
+                        <div class="event-info">
+                            <div class="Topic">
+                                Request Topic:
+                                <span th:text="${request.topic}"></span>
+                            </div>
+                            <div class="des">
+                                Requested By:
+                                <span class="description" th:text="${request.requestFromName}"></span>
+                                <br>
+                                Requester Email:
+                                <span class="description" th:text="${request.requestFromEmail}"></span>
+                                <br>
+                                Request Description:
+                                <span class="description" th:text="${request.requestDescription}"></span>
+
+
+                            </div>
+                            <div>
+                                <form action="removerequest" method="post">
+                                    <button type="submit" class="delete-event-button">Delete Request</button>
+                                    <input type="hidden" name="requestId" th:value="${request.id}" />
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </div>
+        </div>
+        <div class="sidebar">
+            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" type="button" class="new-event-button">+ Add Request</button>
+            <div id="id01" class="modal">
+                <div class="add-event-container">
+                    <form class="modal-content animate" action="/addrequest" method="post">
+                        <h1>Create Request</h1>
+                        <label for="topic"><b>Request Topic</b></label> <br/>
+                        <input type="text" placeholder="Enter Topic" id="topic" name="topic" required/> <br/>
+                        <label for="description"><b>Request Description</b></label> <br/>
+                        <input type="text" placeholder="Enter Description" id="description" name="requestDescription" required/> <br/>
+                        <input type="hidden" name="requestFromEmail" th:value="${session.seniorinfo.email}" />
+                        <input type="hidden" name="requestFromName" th:value="${session.seniorinfo.name}" />
+                        <button type="submit" class="add-event-btn">Add Request</button>
+                        <div class="container" style="background-color:#f1f1f1">
+                            <center><button class="add-event-btn"type="button" onclick="document.getElementById('id01').style.display='none'" >Cancel</button></center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+    </script>
+
+
+</body>
+</html>

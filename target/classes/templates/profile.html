@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html
+xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tech Connect</title>
+  <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">Tech Connect
+        </div>
+        <a><form action="/profile" method="post">
+            <button class="tab-btn" type="submit">Profile</button>
+        </form></a>
+        <a><form action="/allupcomingevents" method="get">
+            <button class="tab-btn" type="submit">Upcoming Events</button>
+        </form></a>
+        <a><form action="/requests" method="post">
+            <input type="hidden" name="email" th:value="${session.seniorinfo.email}" />
+            <button class="tab-btn" type="submit">My Requests</button>
+        </form></a>
+        <a><form action="/allschools" method="get">
+            <button class="tab-btn" type="submit">Participating Schools</button>
+        </form></a>
+        <a><form action="/logout" method="post">
+            <button class="tab-btn" type="submit">Log Out</button>
+        </form></a>
+    </div>
+    <div class="container">
+        <div class="info">
+            <h1>User Profile</h1>
+            <div class="student-name">
+                <label style="font-size: 27px;" >Name: </label>
+                <label th:text="${session.seniorinfo.name}" style="font-size: 27px;"></label>
+                <label style="font-size: 27px;" >Type: </label>
+                <label th:text="${session.seniorinfo.type}" style="font-size: 27px;"></label>
+                </br>
+            </div>
+            <div class="student-name">
+                <label style="font-size: 27px;" >Address: </label>
+                <label th:text="${session.seniorinfo.street}" style="font-size: 27px;"></label>
+                <label th:text="${session.seniorinfo.city}" style="font-size: 27px;"></label>
+                <label th:text="${session.seniorinfo.state}" style="font-size: 27px;"></label>
+                <label th:text="${session.seniorinfo.zip}" style="font-size: 27px;"></label>
+                </br>
+            </div>
+            <div class="student-id">
+                <label style="font-size: 27px;" >Contact Email: </label>
+                <label th:text="${session.seniorinfo.email}" style="font-size: 27px;">email</label>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <script>
+
+
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

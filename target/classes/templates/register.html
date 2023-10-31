@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link href="../styles/homestyle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body id="grad1">
+<div class="navbartop">
+    <div class="logo">Tech Connect
+    </div>
+    <a><form action="/welcome" method="post">
+        <button class="tab-btn" type="submit">Home</button>
+    </form></a>
+    <a><form action="/getinvolved" method="post">
+        <button class="tab-btn" type="submit">Get Involved</button>
+    </form></a>
+    <a><form action="/mainlogin" method="post">
+        <button class="tab-btn" type="submit">Log in</button>
+    </form></a>
+</div>
+<div class="login-box">
+    <div class="login-header">
+        <h1>Tech Connect</h1>
+    </div>
+    <div class="login-header2">
+        <h3>User Registration - Create Account</h3>
+    </div>
+    <div class="login-form">
+        <form action="register" method="post">
+            <label for="type"><b>Registration Type</b></label> <br/>
+            <select id="type" name="type" required oninvalid="this.setCustomValidity('Select Type')"
+                    oninput="this.setCustomValidity('')">
+                <option value="individual">Individual</option>
+                <option value="senior-home">Senior Home</option>
+            </select> <br/>
+            <label for="name"><b>Individual/Senior Home Name</b></label> <br/>
+            <input id="name" placeholder="Enter Senior Home Name" type="text" name="name" required oninvalid="this.setCustomValidity('Enter Senior Home Name Here')"
+                   oninput="this.setCustomValidity('')"/> <br/>
+            <label for="street"><b>Street Name</b></label> <br/>
+            <input id="street" placeholder="Enter Door and Street Name" type="text" name="street" required oninvalid="this.setCustomValidity('Enter street name Here')"
+                   oninput="this.setCustomValidity('')"/> <br/>
+            <input id="city" placeholder="Enter city Name" type="text" name="city" required oninvalid="this.setCustomValidity('Enter city here')"
+                   oninput="this.setCustomValidity('')"/> <br/>
+            <input id="state" placeholder="Enter state" type="text" name="state" required oninvalid="this.setCustomValidity('Enter state here')"
+                   oninput="this.setCustomValidity('')"/> <br/>
+            <input id="zip" placeholder="Enter zip" type="text" name="zip" required oninvalid="this.setCustomValidity('Enter zip here')"
+                   oninput="this.setCustomValidity('')"/> <br/>
+            <label for="email"><b>Email</b></label> <br/>
+            <input type="text" placeholder="Enter Email" id="email" name="email" required oninvalid="this.setCustomValidity('Email required as example@commack.k12.ny.us')"
+                   oninput="this.setCustomValidity('')"/> <br/>
+            <label for="password"><b>Password</b></label> <br/>
+            <input id="password" placeholder="Enter Password" type="password" name="passwd" required/> <br/>
+            <h2 th:text="${error}"></h2>
+            <br/>
+            <button type="submit" class="login-btn">Register</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

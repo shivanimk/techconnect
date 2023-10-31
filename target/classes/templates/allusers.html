@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tech Connect</title>
+  <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">Tech Connect
+        </div>
+        <a><form action="/schoolprofile" method="post">
+            <button class="tab-btn" type="submit">Profile</button>
+        </form></a>
+        <a><form action="/upcomingevents" method="get">
+            <input type="hidden" name="schoolId" th:value="${session.school.schoolId}" />
+            <button class="tab-btn" type="submit">Upcoming Events</button>
+        </form></a>
+        <a><form action="/allrequests" method="get">
+            <button class="tab-btn" type="submit">All Requests</button>
+        </form></a>
+        <a><form action="/allusers" method="get">
+            <button class="tab-btn" type="submit">Registered Users</button>
+        </form></a>
+        <a><form action="/logout" method="post">
+            <button class="tab-btn" type="submit">Log Out</button>
+        </form></a>
+    </div>
+
+    <div class="event-container">
+        <h1>Participating Users</h1>
+        <div class="container">
+            <div class="check-in">
+
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..." title="Type in a name">
+
+                <table id="myTable">
+                    <tr class="header">
+                        <th style="width:30%;">Name</th>
+                        <th style="width:70%;">Info</th>
+                    </tr>
+                    <tr th:each="seniorInfo : ${allusers}">
+                        <td><label th:text="${seniorInfo.name} "></label></td>
+                        <td>
+                            Name:
+                            <span class="description" th:text="${seniorInfo.name}"></span>
+                            <br>
+                            Type:
+                            <span class="description" th:text="${seniorInfo.type}"></span>
+                            <br>
+                            Addres:
+                            <span class="description" th:text="${seniorInfo.street}"></span>
+                            <span class="description" th:text="${seniorInfo.city}"></span>
+                            <span class="description" th:text="${seniorInfo.state}"></span>
+                            <span class="description" th:text="${seniorInfo.zip}"></span>
+                            <br>
+                            Contact Email:
+                            <span class="description" th:text="${seniorInfo.email}"></span>
+                        </td>
+
+                    </tr>
+                </table>
+
+            </div>
+
+
+<!--            <div class="admin-event-table">-->
+<!--                <tr th:each="seniorInfo : ${allusers}">-->
+<!--                    <td>-->
+<!--                        <div class="event-info">-->
+<!--                            <div class="Topic">-->
+<!--                                <span th:text="${seniorInfo.name}"></span>-->
+<!--                            </div>-->
+<!--                            <div class="des">-->
+<!--                                Type:-->
+<!--                                <span class="description" th:text="${seniorInfo.type}"></span>-->
+<!--                                <br>-->
+<!--                                Address:-->
+<!--                                <span class="description" th:text="${seniorInfo.street}"></span>-->
+<!--                                <span class="description" th:text="${seniorInfo.city}"></span>-->
+<!--                                <span class="description" th:text="${seniorInfo.state}"></span>-->
+<!--                                <span class="description" th:text="${seniorInfo.zip}"></span>-->
+<!--                                <br>-->
+<!--                                Contact Email:-->
+<!--                                <span class="description" th:text="${seniorInfo.email}"></span>-->
+<!--                            </div>-->
+
+
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
+
+<!--            </div>-->
+        </div>
+
+    </div>
+
+    <script>
+
+        // For The collapsable table/button
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 1; i < tr.length; i++) { // Start from index 1 to skip the header row
+            var found = false;
+            var tdStudent = tr[i].getElementsByTagName("td")[0];
+            var tdInfo = tr[i].getElementsByTagName("td")[1];
+            if (tdStudent || tdInfo) {
+              var txtValueStudent = tdStudent.textContent || tdStudent.innerText;
+              var txtValueInfo = tdInfo.textContent || tdInfo.innerText;
+              if (txtValueStudent.toUpperCase().indexOf(filter) > -1 || txtValueInfo.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                found = true;
+              }
+            }
+            if (!found) {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+    </script>
+</body>
+</html>

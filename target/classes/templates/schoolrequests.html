@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tech Connect</title>
+  <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">Tech Connect
+        </div>
+        <a><form action="/schoolprofile" method="post">
+            <button class="tab-btn" type="submit">Profile</button>
+        </form></a>
+        <a><form action="/upcomingevents" method="get">
+            <input type="hidden" name="schoolId" th:value="${session.school.schoolId}" />
+            <button class="tab-btn" type="submit">Upcoming Events</button>
+        </form></a>
+        <a><form action="/allrequests" method="get">
+            <button class="tab-btn" type="submit">All Requests</button>
+        </form></a>
+        <a><form action="/allusers" method="get">
+            <button class="tab-btn" type="submit">Registered users</button>
+        </form></a>
+        <a><form action="/logout" method="post">
+            <button class="tab-btn" type="submit">Log Out</button>
+        </form></a>
+    </div>
+    <div class="event-container">
+        <h1>Request Inbox</h1>
+        <div class="container">
+            <div class="admin-event-table" >
+                <tr th:each="request : ${allrequests}">
+                    <td>
+                        <div class="event-info">
+                            <div class="Topic">
+                                Request Topic:
+                                <span th:text="${request.topic}"></span>
+                            </div>
+                            <div class="des">
+                                Requested By:
+                                <span class="description" th:text="${request.requestFromName}"></span>
+                                <br>
+                                Requester Email:
+                                <span class="description" th:text="${request.requestFromEmail}"></span>
+                                <br>
+                                Request Description:
+                                <span class="description" th:text="${request.requestDescription}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // For The collapsable table/button
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+    </script>
+
+
+</body>
+</html>

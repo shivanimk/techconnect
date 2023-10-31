@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html
+xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tech Connect</title>
+  <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">Tech Connect
+        </div>
+        <a><form action="/schoolprofile" method="post">
+            <button class="tab-btn" type="submit">Profile</button>
+        </form></a>
+        <a><form action="/upcomingevents" method="get">
+            <input type="hidden" name="schoolId" th:value="${session.school.schoolId}" />
+            <button class="tab-btn" type="submit">Upcoming Events</button>
+        </form></a>
+        <a><form action="/allrequests" method="get">
+            <button class="tab-btn" type="submit">All Requests</button>
+        </form></a>
+        <a><form action="/allusers" method="get">
+            <button class="tab-btn" type="submit">Registered Users</button>
+        </form></a>
+        <a><form action="/logout" method="post">
+            <button class="tab-btn" type="submit">Log Out</button>
+        </form></a>
+    </div>
+    <div class="container">
+        <div class="info">
+            <h1>School Profile</h1>
+            <div class="student-name">
+                <label style="font-size: 27px;" >School Home: </label>
+                <label th:text="${session.school.name}" style="font-size: 27px;"></label>
+                </br>
+            </div>
+            <div class="student-name">
+                <label style="font-size: 27px;" >Address: </label>
+                <label th:text="${session.school.street}" style="font-size: 27px;"></label>
+                <label th:text="${session.school.city}" style="font-size: 27px;"></label>
+                <label th:text="${session.school.state}" style="font-size: 27px;"></label>
+                <label th:text="${session.school.zip}" style="font-size: 27px;"></label>
+                </br>
+            </div>
+            <div class="student-id">
+                <label style="font-size: 27px;" >Contact Email: </label>
+                <label th:text="${session.school.email}" style="font-size: 27px;">contact email</label>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
